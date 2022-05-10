@@ -10,6 +10,7 @@ CONFIG -= app_bundle
 SOURCES += \
         get_options.cc \
         godeprogram.cc \
+        gpdeprogram.cc \
         gpopulation.cc \
         gprogram.cpp \
         gsodeprogram.cc \
@@ -32,6 +33,7 @@ QMAKE_LFLAGS += -O3
 HEADERS += \
     get_options.h \
     godeprogram.h \
+    gpdeprogram.h \
     gpopulation.h \
     gprogram.h \
     gsodeprogram.h \

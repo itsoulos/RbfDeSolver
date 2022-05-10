@@ -3,11 +3,14 @@
 # include <godeprogram.h>
 # include <gpopulation.h>
 # include <gsodeprogram.h>
+# include <gpdeprogram.h>
 Rbf *rbf = NULL;
 GOdeProgram *ode_program  = NULL;
 GPopulation *ode_population = NULL;
 GPopulation *sode_population = NULL;
 GSodeProgram *sode_program  =NULL;
+GPdeProgram  *pde_program = NULL;
+GPopulation *pde_population = NULL;
 vector<GProgram*> ompODeProgram;
 vector<Rbf*> ompRbf;
 int chromosome_size = 0;
@@ -130,6 +133,60 @@ void done_sode()
     delete sode_program;
 }
 
+
+void init_pde()
+{
+    dimension = 2;
+    rbf = new Rbf(dimension,weights);
+    pde_program =new GPdeProgram(rbf,dll_name);
+
+    chromosome_size  =( dimension * weights + weights + weights);
+    ompODeProgram.resize(threads);
+    ompRbf.resize(threads);
+    for(int i=0;i<threads;i++)
+    {
+        ompRbf[i] = new Rbf(dimension,weights);
+        ompODeProgram[i]=new GOdeProgram(ompRbf[i],dll_name);
+    }
+
+    if(threads<=1)
+        pde_population=new GPopulation(chromosome_count,chromosome_size,pde_program);
+    else
+    pde_population=new GPopulation(chromosome_count,chromosome_size,ompODeProgram);
+    pde_population->setSelectionRate(selection_rate);
+    pde_population->setMutationRate(mutation_rate);
+}
+
+void run_pde()
+{
+    int iters=0;
+    vector<double> genome;
+    genome.resize(chromosome_size);
+    string solution;
+    double fitness;
+    for(iters=1;iters<=maxgenerations;iters++)
+    {
+        pde_population->nextGeneration();
+        genome=pde_population->getBestGenome();
+        fitness=pde_population->getBestFitness();
+        rbf->setVariables(genome);
+        printf("GENERATION: %4d\t FITNESS: %.10lg RBF: %s \t \n",
+                iters,fabs(fitness),rbf->toString().toStdString().c_str());
+        if(fabs(fitness)<eps) break;
+     }
+}
+
+void done_pde()
+{
+    for(int i=0;i<threads;i++)
+    {
+        delete ompODeProgram[i];
+        delete ompRbf[i];
+    }
+    delete pde_population;
+    delete pde_program;
+}
+
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc,argv);
@@ -150,9 +207,9 @@ int main(int argc, char *argv[])
     else
     if(ode_kind=="pde")
     {
-     //   init_pde();
-     //   run_pde();
-     //   done_pde();
+      init_pde();
+      run_pde();
+      done_pde();
     }
     else
     if(ode_kind=="sode")

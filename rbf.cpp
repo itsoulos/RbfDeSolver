@@ -107,6 +107,8 @@ QString doubletostring(double v)
 QString Rbf::toString()
 {
     QString s="";
+    if(dimension == 1)
+    {
     for(int i=0;i<weights;i++)
     {
         s = s + doubletostring(weight[i])+"*exp(-(x-"+
@@ -115,6 +117,23 @@ QString Rbf::toString()
                 doubletostring(variance[i])+")";
         if(i!=weights-1)
             s=s+"+";
+    }
+    }
+    else
+    if(dimension == 2)
+    {
+        for(int i=0;i<weights;i++)
+        {
+            s = s + doubletostring(weight[i])+"*exp(-((x-"+
+                    doubletostring(center[i][0])+")*(x-"+
+                    doubletostring(center[i][0])+")+(y-"+
+                    doubletostring(center[i][1])+")*(y-"+
+                    doubletostring(center[i][1])+
+                    "))/"+
+                    doubletostring(variance[i])+")";
+            if(i!=weights-1)
+                s=s+"+";
+        }
     }
     return s;
 }

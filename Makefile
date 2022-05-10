@@ -54,6 +54,7 @@ OBJECTS_DIR   = ./
 
 SOURCES       = get_options.cc \
 		godeprogram.cc \
+		gpdeprogram.cc \
 		gpopulation.cc \
 		gprogram.cpp \
 		gsodeprogram.cc \
@@ -61,6 +62,7 @@ SOURCES       = get_options.cc \
 		rbf.cpp 
 OBJECTS       = get_options.o \
 		godeprogram.o \
+		gpdeprogram.o \
 		gpopulation.o \
 		gprogram.o \
 		gsodeprogram.o \
@@ -153,11 +155,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		RbfDeSolver.pro get_options.h \
 		godeprogram.h \
+		gpdeprogram.h \
 		gpopulation.h \
 		gprogram.h \
 		gsodeprogram.h \
 		rbf.h get_options.cc \
 		godeprogram.cc \
+		gpdeprogram.cc \
 		gpopulation.cc \
 		gprogram.cpp \
 		gsodeprogram.cc \
@@ -362,8 +366,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents get_options.h godeprogram.h gpopulation.h gprogram.h gsodeprogram.h rbf.h $(DISTDIR)/
-	$(COPY_FILE) --parents get_options.cc godeprogram.cc gpopulation.cc gprogram.cpp gsodeprogram.cc main.cpp rbf.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents get_options.h godeprogram.h gpdeprogram.h gpopulation.h gprogram.h gsodeprogram.h rbf.h $(DISTDIR)/
+	$(COPY_FILE) --parents get_options.cc godeprogram.cc gpdeprogram.cc gpopulation.cc gprogram.cpp gsodeprogram.cc main.cpp rbf.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -419,6 +423,11 @@ godeprogram.o: godeprogram.cc godeprogram.h \
 		rbf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o godeprogram.o godeprogram.cc
 
+gpdeprogram.o: gpdeprogram.cc gpdeprogram.h \
+		gprogram.h \
+		rbf.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gpdeprogram.o gpdeprogram.cc
+
 gpopulation.o: gpopulation.cc gpopulation.h \
 		gprogram.h \
 		rbf.h
@@ -437,7 +446,9 @@ main.o: main.cpp get_options.h \
 		godeprogram.h \
 		gprogram.h \
 		rbf.h \
-		gpopulation.h
+		gpopulation.h \
+		gsodeprogram.h \
+		gpdeprogram.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 rbf.o: rbf.cpp rbf.h
