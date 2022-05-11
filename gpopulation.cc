@@ -78,7 +78,7 @@ void	GPopulation::localSearch(int pos)
     vector<double> g;
 	g.resize(genome_size);
 	
-    for(int i=0;i<genome_size;i++)
+    /*for(int i=0;i<genome_size;i++)
     {
         int ipos = rand() % genome_size;
         int new_value;
@@ -96,7 +96,7 @@ void	GPopulation::localSearch(int pos)
         }
         else	genome[pos][ipos]=old_value;
         }
-    }
+    }*/
 
     for(int iters=1;iters<=100;iters++)
     {
