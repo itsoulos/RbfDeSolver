@@ -102,7 +102,10 @@ void	GPopulation::localSearch(int pos)
     }
     pt->setLeftMargin(xl);
     pt->setRightMargin(xr);
+    extern int threads;
+    if(threads<=1)
     pt->program=program;
+    else pt->program=ompProgram[omp_get_thread_num()];
     pt->setDimension(genome[0].size());
     MinInfo Info;
     Info.p= pt;
