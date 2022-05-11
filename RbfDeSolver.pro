@@ -15,7 +15,9 @@ SOURCES += \
         gprogram.cpp \
         gsodeprogram.cc \
         main.cpp \
-        rbf.cpp
+        problem.cc \
+        rbf.cpp \
+        tolmin.cc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -37,4 +39,6 @@ HEADERS += \
     gpopulation.h \
     gprogram.h \
     gsodeprogram.h \
-    rbf.h
+    problem.h \
+    rbf.h \
+    tolmin.h

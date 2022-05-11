@@ -193,6 +193,7 @@ int main(int argc, char *argv[])
     setlocale(LC_ALL,"C");
     parseCmdLine(app.arguments());
     srand(genome_rand);
+    srand48(genome_rand);
     if(dll_name=="")
     {
         print_usage();

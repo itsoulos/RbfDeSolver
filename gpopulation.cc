@@ -73,11 +73,44 @@ GPopulation::GPopulation(int gcount,int gsize,GProgram *p)
 
 }
 
+class RbfProblem :public Problem
+{
+    public:
+        GProgram *program;
+        virtual double  funmin(Matrix);
+};
+
+double RbfProblem::funmin(Matrix x)
+{
+    return -program->fitness(x);
+}
+
+
 void	GPopulation::localSearch(int pos)
 {
     vector<double> g;
 	g.resize(genome_size);
 	
+    RbfProblem *pt=new RbfProblem();
+    Data xl,xr;
+    xl.resize(g.size());
+    xr.resize(g.size());
+    for(int i=0;i<g.size();i++)
+    {
+        xl[i]=-100;
+        xr[i]= 100;
+    }
+    pt->setLeftMargin(xl);
+    pt->setRightMargin(xr);
+    pt->program=program;
+    pt->setDimension(genome[0].size());
+    MinInfo Info;
+    Info.p= pt;
+    Info.iters=2001;
+    double ff=tolmin(genome[pos],Info);
+    delete pt;
+    fitness_array[pos]=-ff;
+    return;
     /*for(int i=0;i<genome_size;i++)
     {
         int ipos = rand() % genome_size;
@@ -212,14 +245,8 @@ void	GPopulation::crossover()
 			
                 }
 
-		/*	pt1:	The point of crossover. We use one - point 
-		 *		crossover.
-		 * */
-		int pt1;
-		pt1=rand() % genome_size;
 
-		/*	Swap the parts of the parents.
-		 * */
+
 
         for(int k=0;k<genome_size;k++)
         {
@@ -335,7 +362,7 @@ void	GPopulation::nextGeneration()
 	select();
 	crossover();
 
-   int localSearchGenerations=20,localSearchChromosomes=20;
+   int localSearchGenerations=100,localSearchChromosomes=20;
     if((generation+1)%localSearchGenerations==0)
 	{
         for(int i=0;i<localSearchChromosomes;i++)

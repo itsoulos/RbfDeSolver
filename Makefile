@@ -59,7 +59,9 @@ SOURCES       = get_options.cc \
 		gprogram.cpp \
 		gsodeprogram.cc \
 		main.cpp \
-		rbf.cpp 
+		problem.cc \
+		rbf.cpp \
+		tolmin.cc 
 OBJECTS       = get_options.o \
 		godeprogram.o \
 		gpdeprogram.o \
@@ -67,7 +69,9 @@ OBJECTS       = get_options.o \
 		gprogram.o \
 		gsodeprogram.o \
 		main.o \
-		rbf.o
+		problem.o \
+		rbf.o \
+		tolmin.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -159,14 +163,18 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		gpopulation.h \
 		gprogram.h \
 		gsodeprogram.h \
-		rbf.h get_options.cc \
+		problem.h \
+		rbf.h \
+		tolmin.h get_options.cc \
 		godeprogram.cc \
 		gpdeprogram.cc \
 		gpopulation.cc \
 		gprogram.cpp \
 		gsodeprogram.cc \
 		main.cpp \
-		rbf.cpp
+		problem.cc \
+		rbf.cpp \
+		tolmin.cc
 QMAKE_TARGET  = RbfDeSolver
 DESTDIR       = 
 TARGET        = RbfDeSolver
@@ -366,8 +374,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents get_options.h godeprogram.h gpdeprogram.h gpopulation.h gprogram.h gsodeprogram.h rbf.h $(DISTDIR)/
-	$(COPY_FILE) --parents get_options.cc godeprogram.cc gpdeprogram.cc gpopulation.cc gprogram.cpp gsodeprogram.cc main.cpp rbf.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents get_options.h godeprogram.h gpdeprogram.h gpopulation.h gprogram.h gsodeprogram.h problem.h rbf.h tolmin.h $(DISTDIR)/
+	$(COPY_FILE) --parents get_options.cc godeprogram.cc gpdeprogram.cc gpopulation.cc gprogram.cpp gsodeprogram.cc main.cpp problem.cc rbf.cpp tolmin.cc $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -430,7 +438,9 @@ gpdeprogram.o: gpdeprogram.cc gpdeprogram.h \
 
 gpopulation.o: gpopulation.cc gpopulation.h \
 		gprogram.h \
-		rbf.h
+		rbf.h \
+		problem.h \
+		tolmin.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gpopulation.o gpopulation.cc
 
 gprogram.o: gprogram.cpp gprogram.h \
@@ -447,12 +457,21 @@ main.o: main.cpp get_options.h \
 		gprogram.h \
 		rbf.h \
 		gpopulation.h \
+		problem.h \
+		tolmin.h \
 		gsodeprogram.h \
 		gpdeprogram.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
+problem.o: problem.cc problem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o problem.o problem.cc
+
 rbf.o: rbf.cpp rbf.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o rbf.o rbf.cpp
+
+tolmin.o: tolmin.cc tolmin.h \
+		problem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tolmin.o tolmin.cc
 
 ####### Install
 

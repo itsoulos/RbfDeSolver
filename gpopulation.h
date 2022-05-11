@@ -1,5 +1,7 @@
 # ifndef __GPOPULATION__H
 # include <gprogram.h>
+# include <problem.h>
+# include <tolmin.h>
 # include <vector>
 using namespace std;
 
