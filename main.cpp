@@ -72,7 +72,6 @@ void init_sode()
 {
     rbf = new Rbf(dimension,weights);
     sode_program =new GSodeProgram(rbf,dll_name);
-    ompODeProgram.resize(threads);
 
     chromosome_size  =sode_program->getNode()*( dimension * weights + weights + weights);
     ompODeProgram.resize(threads);
@@ -80,7 +79,7 @@ void init_sode()
     for(int i=0;i<threads;i++)
     {
         ompRbf[i] = new Rbf(dimension,weights);
-        ompODeProgram[i]=new GOdeProgram(ompRbf[i],dll_name);
+        ompODeProgram[i]=new GSodeProgram(ompRbf[i],dll_name);
     }
 
     if(threads<=1)
@@ -146,7 +145,7 @@ void init_pde()
     for(int i=0;i<threads;i++)
     {
         ompRbf[i] = new Rbf(dimension,weights);
-        ompODeProgram[i]=new GOdeProgram(ompRbf[i],dll_name);
+        ompODeProgram[i]=new GPdeProgram(ompRbf[i],dll_name);
     }
 
     if(threads<=1)

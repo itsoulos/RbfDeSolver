@@ -163,14 +163,6 @@ literal "false"
 
 \end_inset
 
-, methods that incorporate radial basis functions networks 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "de_rbf1,de_rbf2,de_rbf3"
-literal "false"
-
-\end_inset
-
 , methods based on differential evolution techniques 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -218,76 +210,139 @@ literal "true"
 
 , that creates solutions of differential equations in closed analytical
  form.
- Grammatical Evolution is an evolutionary method, which has been applied
- with success in many fields such as economics 
+ The current work proposed the incrorporation of a modified genetic algorithm
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ge_econ"
+key "ga1,ga2,ga3"
 literal "false"
 
 \end_inset
 
-, energy demand estimation 
+ and an Radial Basis Function network (RBF) 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ge_energy"
+key "rbf1"
 literal "false"
 
 \end_inset
 
-, biology 
+ to tackle the problem of solving differential equations.
+ RBF are usually expressed as:
+\series bold
+
+\begin_inset Formula 
+\begin{equation}
+y(x)=\sum_{i=1}^{k}w_{i}\phi\left(\left\Vert x-c_{i}\right\Vert \right)\label{eq:firstrbf}
+\end{equation}
+
+\end_inset
+
+
+\series default
+where the vector 
+\series bold
+
+\begin_inset Formula $\overrightarrow{x}$
+\end_inset
+
+ 
+\series default
+is considered the input vector and the vector
+\series bold
+ 
+\begin_inset Formula $\overrightarrow{w}$
+\end_inset
+
+ 
+\series default
+is denoted as the weight vector.
+ In many cases the function 
+\begin_inset Formula $\phi(x)$
+\end_inset
+
+ is a Gaussian function such as:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula 
+\begin{equation}
+\phi(x)=\exp\left(-\frac{\left(x-c\right)^{2}}{\sigma^{2}}\right)
+\end{equation}
+
+\end_inset
+
+
+\series default
+where the value 
+\begin_inset Formula $\phi(x)$
+\end_inset
+
+ depends on the distance between the vectors
+\series bold
+ 
+\begin_inset Formula $\overrightarrow{x},\ $
+\end_inset
+
+
+\begin_inset Formula $\overrightarrow{c}$
+\end_inset
+
+
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+RBF networks have been used in many practical prolems from various areas
+ such as physics 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ge_biology"
+key "rbfphysics1,rbfphysics2,rbfphysics3,rbfphysics4"
 literal "false"
 
 \end_inset
 
-, neural network training 
+, chemistry 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ge_neural"
+key "rbfchemistry1,rbfchemistry2,rbfchemistry3"
 literal "false"
 
 \end_inset
 
-, electronics 
+, medicine 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ge_electronics"
+key "rbfmed1,rbfmed2,rbfmed3"
+literal "false"
+
+\end_inset
+
+, economics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "rbfecon1,rbfecon2,rbfecon3"
 literal "false"
 
 \end_inset
 
  etc.
- The present work proposes 3 important changes in the original method of
- solving differential equations: 
-\end_layout
-
-\begin_layout Itemize
-A local method of chromosome improvement that is periodically applied to
- the genetic population.
- This modification is used to enchance the solutions located by the evolutionary
- process.
-\end_layout
-
-\begin_layout Itemize
-A stochastic method of termination of the algorithm, which is used to terminate
- the algorithm when under some certainty the stochastic algorithm has located
- the optimal solution.
-\end_layout
-
-\begin_layout Itemize
-The introduction of parallel processing techniques to accelerate the evolutionar
-y process.
-\end_layout
-
-\begin_layout Standard
-Also, the used software tool is illustrated in detail and some examples
+ In the current work the RBF network is used as an estimator of the differential
+ equations for the cases of ordinary differential equations (ODEs), systems
+ of ordinary differential equations (SODEs) and partial differential equations
+ (PDEs).
+ The enforcement of the initial and boundary conditions is performed through
+ penalization.
+ The parameters of the network are adapted through a hybrid genetic algorithm.
+ Also, the used software tool is illustrated in detail and some examples
  of usage are presented.
  The tool is designed for UNIX systems equipped with the GNU C++ and Fortran
  77 (g77) compilers.
- Also, for the parellization the incorporation of the OpenMP 
+ Furthermore, for the parellization the incorporation of the OpenMP 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "openmp"
@@ -356,8 +411,551 @@ name "sec:Detailed-description"
 
 \end_layout
 
+\begin_layout Standard
+In the proposed method an artificial RBF network with 
+\begin_inset Formula $n$
+\end_inset
+
+ weights is used as a function estimator that solves a differential equation.
+ The initial and boundary conditions are imposed by the use of punitive
+ factors.
+ The network parameters are estimated using a hybrid genetic algorithm.
+
+\series bold
+ 
+\series default
+The genetic algorithms are biolgically inspired programming tools,
+\series bold
+ 
+\series default
+that maintain and evolve a pool of candidate solutions of an optimization
+ problem.
+ The members of this pool are usually called chromosomes or genetic population.
+ The evolution of the population is performed through the operations of
+ mutation and crossover.
+ Among other advantages, genetic algorithms are distinguished for their
+ simplicity in implementation, for the ease of their parallelization, their
+ tolerance for errors, etc.
+ The size of each chromosome in the used genetic algorithm is calculated
+ as: 
+\begin_inset Formula $d\times n+n+n$
+\end_inset
+
+, where the value 
+\begin_inset Formula $d$
+\end_inset
+
+ is 1 for ODEs and system of ODEs and 2 for PDEs.
+ The first 
+\begin_inset Formula $d\times n$
+\end_inset
+
+ values are used for the centroid vectors 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+ of the equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstrbf"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the next 
+\begin_inset Formula $n$
+\end_inset
+
+ values are used for the 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ values of every gaussian unit and the remaining 
+\begin_inset Formula $n$
+\end_inset
+
+ values of the chromosome are used for the weights 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ of the equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:firstrbf"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In addition, in the proposed implementation a local optimization method
+ is periodically applied to some randomly selected chromosomes of the population.
+ This approach is performed in order to improve the accuracy of the solution
+ produced by the genetic algorithm, but also to speed up the solution of
+ the differential equation.
+\end_layout
+
 \begin_layout Subsection
-Main algorithm
+Main algorithm 
+\end_layout
+
+\begin_layout Standard
+The steps of the algorithm are given below:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Initialization step
+\series default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ iter=0, as the current number of generations.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $N_{c}$
+\end_inset
+
+, as the total number of chromosomes.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $w$
+\end_inset
+
+, the number of weights in the RBF network.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Initialize
+\series default
+ randomly the chromosomes 
+\begin_inset Formula $X_{i},i=1\ldots N_{c}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ ITERMAX as the maximum number of allowed generations.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $p_{s}$
+\end_inset
+
+ as the selection rate and 
+\begin_inset Formula $p_{m}$
+\end_inset
+
+ the mutation rate.
+ Both rates are in the range 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $f_{l}=\infty$
+\end_inset
+
+, the best discovered fitness
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $L_{I}$
+\end_inset
+
+ the number of generations that should pass before the local search procedure
+ is applied.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $L_{c}$
+\end_inset
+
+ the number of chromosomes that will participate in local search procedure.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Termination check.
+
+\series default
+ .......
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the fitness 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ for every chromosome of the population:
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Calculate-the-corresponding"
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Transform
+\series default
+ the original train data using grammatical evolution and create 
+\begin_inset Formula $N_{f}$
+\end_inset
+
+ features.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Train
+\series default
+ a classification model 
+\begin_inset Formula $C_{i}$
+\end_inset
+
+ obtaining the train error 
+\begin_inset Formula $E$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Assign
+\series default
+ the train error 
+\begin_inset Formula $E$
+\end_inset
+
+ to fitness value 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Genetic Operators
+\series default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Selection procedure
+\series default
+: The chromosomes are sorted in descending order according to their fitness
+ value.
+ The first 
+\begin_inset Formula $\left(1-p_{s}\right)\times N_{c}$
+\end_inset
+
+ chromosomes are transferred to the next generation.
+ The rest of the chromosomes are substituted by offsprings created through
+ one point crossover procedure.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Mutation procedure:
+\series default
+ For every element of each chromosome a random number 
+\begin_inset Formula $r$
+\end_inset
+
+ in range 
+\begin_inset Formula $\left[0,1\right]$
+\end_inset
+
+ is produced.
+ If 
+\begin_inset Formula $r\le p_{m}$
+\end_inset
+
+ then the corresponding element is randomly altered.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Replace
+\series default
+ the 
+\begin_inset Formula $p_{s}\times N_{c}$
+\end_inset
+
+ worst chromosomes in the population with the offsprings created by the
+ genetic operators.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ iter=iter+1
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Local Search Step 
+\series default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+If 
+\series default
+
+\begin_inset Formula $\mbox{iters}\ \mod\ L_{i}=0$
+\end_inset
+
+ 
+\series bold
+Then
+\series default
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Select
+\series default
+ randomly 
+\begin_inset Formula $L_{C}$
+\end_inset
+
+ chromosomes from the genetic population and create the set 
+\begin_inset Formula $L_{S}$
+\end_inset
+
+ from these chromosomes
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+For
+\series default
+ every chromosome 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ 
+\series bold
+in
+\series default
+ 
+\begin_inset Formula $L_{S}$
+\end_inset
+
+ 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Select
+\series default
+ randomly another chromosome 
+\begin_inset Formula $Y$
+\end_inset
+
+ from the population
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ an offspring of 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+and Y using one point crossover.
+ Denote the offspring as 
+\begin_inset Formula $Z$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Obtain
+\series default
+ the fitness 
+\begin_inset Formula $f(Z)$
+\end_inset
+
+ of chromosome 
+\begin_inset Formula $Z$
+\end_inset
+
+
+\series bold
+.
+ If
+\series default
+ 
+\begin_inset Formula $f(z)<f_{i}$
+\end_inset
+
+ then 
+\begin_inset Formula $X_{i}=Z,\ f_{i}=f(Z)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Endif
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Obtain 
+\series default
+the best value in the population, denoted as 
+\begin_inset Formula $f_{l}$
+\end_inset
+
+ for the corresponding chromosome 
+\series bold
+
+\begin_inset Formula $x_{l}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Fitness evaluation
+\end_layout
+
+\begin_layout Subsection
+Ode case 
+\end_layout
+
+\begin_layout Subsection
+Sode case 
+\end_layout
+
+\begin_layout Subsection
+Pde case
 \end_layout
 
 \begin_layout Section
@@ -378,6 +976,10 @@ Installation
 \begin_layout Standard
 The user can program his differential equations either in c++ or in Fortran.
  In this section examples for each case (ODE, SODE and PDE) are presented.
+\end_layout
+
+\begin_layout Subsection
+Command line options
 \end_layout
 
 \begin_layout Subsection
@@ -584,7 +1186,7 @@ ode1ff
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1026,7 +1628,7 @@ yyy)
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1472,7 +2074,7 @@ ystemf0(node,f0)
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1736,7 +2338,7 @@ double
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2245,7 +2847,7 @@ DeSolver
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -2698,7 +3300,7 @@ y2)
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -3822,6 +4424,9 @@ ODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.2\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -3860,6 +4465,9 @@ ODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.4\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -3898,6 +4506,9 @@ ODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.7\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -3936,6 +4547,9 @@ ODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.8\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -3974,6 +4588,9 @@ ODE5
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.1\times10^{-1}$
+\end_inset
+
 
 \end_layout
 
@@ -4012,6 +4629,9 @@ NLODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.6\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -4050,6 +4670,9 @@ NLODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $5.3\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4088,6 +4711,9 @@ NLODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.9\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4126,6 +4752,9 @@ NLODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.9\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4836,64 +5465,6 @@ ion technique based on training artificial neural network, Applied Mathematics
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "de_rbf1"
-literal "false"
-
-\end_inset
-
-C.
- Franke, R.
- Schaback, Solving partial differential equations by collocation using radial
- basis functions, Applied Mathematics and Computation 
-\series bold
-93
-\series default
-, pp.
- 73-82, 1998.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "de_rbf2"
-literal "false"
-
-\end_inset
-
-G.E.
- Fasshauer, Solving differential equations with radial basis functions:
- multilevel methods and smoothing, Advances in Computational Mathematics
- 
-\series bold
-11
-\series default
-, pp.
- 139–159, 1999.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "de_rbf3"
-literal "false"
-
-\end_inset
-
-M.
- Tatari, M.
- Dehghan, A method for solving partial differential equations via radial
- basis functions: Application to the heat equation, Engineering Analysis
- with Boundary Elements 
-\series bold
-34
-\series default
-, pp.
- 206-212, 2010.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
 key "de_de1"
 literal "false"
 
@@ -5062,112 +5633,6 @@ I.G.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "ge_econ"
-literal "false"
-
-\end_inset
-
-I.
- Dempsey, M.
- O'Neill, A.
- Brabazon, Adaptive Trading With Grammatical Evolution, In: 2006 IEEE Internatio
-nal Conference on Evolutionary Computation, 2006, pp.
- 2587-2592.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "ge_energy"
-literal "false"
-
-\end_inset
-
-D.
- Martínez-Rodríguez, J.M.
- Colmenar, J.I.
- Hidalgo, R.J.
- Villanueva Micó, S.
- Salcedo-Sanz, Particle swarm grammatical evolution for energy demand estimation
-, Energy Sci Eng.
- 
-\series bold
-8
-\series default
-, pp.
- 1068– 1079, 2020.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "ge_biology"
-literal "false"
-
-\end_inset
-
-J.
- I.
- Hidalgo, J.
- M.
- Colmenar, J.L.
- Risco-Martin, A.
- Cuesta-Infante, E.
- Maqueda, M.
- Botella, J.
- A.
- Rubio, Modeling glycemia in humans by means of Grammatical Evolution, Applied
- Soft Computing 
-\series bold
-20
-\series default
-, pp.
- 40-53, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "ge_neural"
-literal "false"
-
-\end_inset
-
-L.M.
- Limade Campos, R.
- C.
- Limão de Oliveira, M.Roisenberg, Optimization of neural networks through
- grammatical evolution and a genetic algorithm, Expert Systems with Applications
- 
-\series bold
-56
-\series default
-, pp.
- 368-384, 2016.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "ge_electronics"
-literal "false"
-
-\end_inset
-
-F.
- Castejón, E.J.
- Carmona, Automatic design of analog electronic circuits using grammatical
- evolution, Applied Soft Computing 
-\series bold
-62
-\series default
-, pp.
- 1003-1018, 2018.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
 key "openmp"
 literal "false"
 
@@ -5182,6 +5647,334 @@ L.
 \series default
 , pp.
  46-55, 1998.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ga1"
+literal "true"
+
+\end_inset
+
+D.
+ Goldberg, Genetic Algorithms in Search, Optimization and Machine Learning,
+ Addison-Wesley Publishing Company, Reading, Massachussets, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ga2"
+literal "true"
+
+\end_inset
+
+Z.
+ Michaelewicz, Genetic Algorithms + Data Structures = Evolution Programs.
+ Springer - Verlag, Berlin, 1996.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "ga3"
+literal "true"
+
+\end_inset
+
+S.A.
+ Grady, M.Y.
+ Hussaini, M.M.
+ Abdullah, Placement of wind turbines using genetic algorithms, Renewable
+ Energy 
+\series bold
+30
+\series default
+, pp.
+ 259-270, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbf1"
+literal "false"
+
+\end_inset
+
+J.
+ Park and I.
+ W.
+ Sandberg, Universal Approximation Using Radial-Basis-Function Networks,
+ Neural Computation 
+\series bold
+3
+\series default
+, pp.
+ 246-257, 1991.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfphysics1"
+literal "false"
+
+\end_inset
+
+P.
+ Teng, Machine-learning quantum mechanics: Solving quantum mechanics problems
+ using radial basis function networks, Phys.
+ Rev.
+ E 
+\series bold
+98
+\series default
+, 033305, 2018.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfphysics2"
+literal "false"
+
+\end_inset
+
+R.
+ Jovanović, A.
+ Sretenovic, Ensemble of radial basis neural networks with K-means clustering
+ for heating energy consumption prediction, FME Transactions 
+\series bold
+45
+\series default
+, pp.
+ 51-57, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfphysics3"
+literal "false"
+
+\end_inset
+
+A.
+ Alexandridis, E.
+ Chondrodima, E.
+ Efthimiou, G.
+ Papadakis, F.
+ Vallianatos and D.
+ Triantis, Large Earthquake Occurrence Estimation Based on Radial Basis
+ Function Neural Networks,IEEE Transactions on Geoscience and Remote Sensing
+ 
+\series bold
+52
+\series default
+, pp.
+ 5443-5453, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfphysics4"
+literal "false"
+
+\end_inset
+
+V.I.
+ Gorbachenko, M.V.
+ Zhukov, Solving boundary value problems of mathematical physics using radial
+ basis function networks, Comput.
+ Math.
+ and Math.
+ Phys.
+ 
+\series bold
+57
+\series default
+, pp.
+ 145–155, 2017.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfchemistry1"
+literal "false"
+
+\end_inset
+
+Chuanhao Wan and Peter de B.
+ Harrington, Self-Configuring Radial Basis Function Neural Networks for
+ Chemical Pattern Recognition, J.
+ Chem.
+ Inf.
+ Comput.
+ Sci.
+ 
+\series bold
+39
+\series default
+, 1049–1056, 1999.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfchemistry2"
+literal "false"
+
+\end_inset
+
+Xiaojun Yao, Xiaoyun Zhang, Ruisheng Zhang, Mancang Liu, Zhide Hu, Botao
+ Fan, Prediction of enthalpy of alkanes by the use of radial basis function
+ neural networks, Computers & Chemistry 
+\series bold
+25
+\series default
+, pp.
+ 475-482, 2001.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfchemistry3"
+literal "false"
+
+\end_inset
+
+A.
+ Shahsavand, A.
+ Ahmadpour, Application of optimal RBF neural networks for optimization
+ and characterization of porous materials, Computers & Chemical Engineering
+ 29, pp.
+ 2134-2143, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfmed1"
+literal "false"
+
+\end_inset
+
+Y.P.
+ Wang, J.W.
+ Dang, Q.
+ Li and S.
+ Li, Multimodal medical image fusion using fuzzy radial basis function neural
+ networks, in 2007 International Conference on Wavelet Analysis and Pattern
+ Recognition, pp.
+ 778-782, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfmed2"
+literal "false"
+
+\end_inset
+
+S, Mehrabi, M.
+ Maghsoudloo, H.
+ Arabalibeik, R.
+ Noormand and Y.
+ Nozari, Congestive heart failure, Chronic obstructive pulmonary disease,
+ Clinical decision support system, Multilayer perceptron neural network
+ and radial basis function neural network, Expert Systems with Applications
+ 
+\series bold
+36
+\series default
+, pp.
+ 6956-6959, 2009.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfmed3"
+literal "false"
+
+\end_inset
+
+M.
+ Veezhinathan, S.
+ Ramakrishnan, Detection of Obstructive Respiratory Abnormality Using Flow–Volum
+e Spirometry and Radial Basis Function Neural Networks, J Med Syst 
+\series bold
+31
+\series default
+, pp.
+ 461, 2007.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfecon1"
+literal "false"
+
+\end_inset
+
+J.
+ A.
+ Momoh and S.
+ S.
+ Reddy, Combined Economic and Emission Dispatch using Radial Basis Function,
+ 2014 IEEE PES General Meeting | Conference & Exposition, National Harbor,
+ MD, 2014, pp.
+ 1-5, doi: 10.1109/PESGM.2014.6939506.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfecon2"
+literal "false"
+
+\end_inset
+
+Jau-Jia Guo and P.
+ B.
+ Luh, Selecting input factors for clusters of Gaussian radial basis function
+ networks to improve market clearing price prediction, IEEE Transactions
+ on Power Systems 
+\series bold
+18
+\series default
+, pp.
+ 665-672, 2003.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "rbfecon3"
+literal "false"
+
+\end_inset
+
+L.
+ Falat, Z.
+ Stanikova, M.
+ Durisova, B.
+ Holkova, T.
+ Potkanova, Application of Neural Network Models in Modelling Economic Time
+ Series with Non-constant Volatility, Procedia Economics and Finance 
+\series bold
+34
+\series default
+, pp.
+ 600-607, 2015.
 \end_layout
 
 \end_body

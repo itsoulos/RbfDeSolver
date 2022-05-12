@@ -6,7 +6,7 @@
 typedef double(*DOUBLE_FUNCTION)();
 typedef int(*INTEGER_FUNCTION)();
 # define REDO_MAX	2
-# define GINF		-1e+100
+# define GINF		-1e+8
 # define GLAMBDA	100.0
 
 

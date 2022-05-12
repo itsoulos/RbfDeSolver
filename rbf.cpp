@@ -15,14 +15,17 @@ double      Rbf::getDistance(Data &x,Data &y)
 
 double      Rbf::gaussianDerivative(Data &x,Data &m,double v,int pos)
 {
-      if(fabs(v)<1e-7) return 1e+100;
+
+
+
     double hx = gaussian(x,m,v);
     return hx * (-2.0/v)*(x[pos]-m[pos]);
 }
 
 double      Rbf::gaussianSecondDerivative(Data &x,Data &m,double v,int pos)
 {
-      if(fabs(v)<1e-7) return 1e+100;
+
+
     double hx = gaussian(x,m,v);
     double phixx = (-2.0/v)*(x[pos]-m[pos]);
     return hx *(phixx  * phixx +(-2.0/v));
@@ -30,7 +33,7 @@ double      Rbf::gaussianSecondDerivative(Data &x,Data &m,double v,int pos)
 
 double      Rbf::gaussian(Data &x,Data &m,double v)
 {
-    if(fabs(v)<1e-7) return 1e+100;
+
     double dist =getDistance(x,m);
     return exp(-dist * dist/v);
 }
@@ -65,6 +68,7 @@ void    Rbf::setVariables(Data &w)
 
 double  Rbf::getValue(Data &x)
 {
+
     double sum = 0.0;
     for(int i=0;i<weights;i++)
     {
@@ -76,6 +80,7 @@ double  Rbf::getValue(Data &x)
 
 double  Rbf::getDerivative(Data &x,int pos)
 {
+
     double sum = 0.0;
     for(int i=0;i<weights;i++)
     {
@@ -87,6 +92,7 @@ double  Rbf::getDerivative(Data &x,int pos)
 
 double  Rbf::getSecondDerivative(Data &x,int pos)
 {
+
     double sum = 0.0;
     for(int i=0;i<weights;i++)
     {

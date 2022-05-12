@@ -176,8 +176,6 @@ double GSodeProgram::fitness(vector<double> &genome)
 	 * */
 	if(systemfun==NULL && fsystemfun==NULL) return GINF;
     int i,j;
-	vector<int> genome_part;
-	genome_part.resize(genome.size()/node);
 
     double y_array[node];
     double yy_array[node];
@@ -185,7 +183,7 @@ double GSodeProgram::fitness(vector<double> &genome)
     x.resize(1);
 	double pt = 0.0;
     Data subgenome;
-    subgenome.resize(genome.size()/getNode());
+    subgenome.resize(genome.size()/node);
 	double value=0.0;
 	/*	Fitness evaluation at the npoints points.
 	 * */
@@ -231,6 +229,9 @@ double GSodeProgram::fitness(vector<double> &genome)
             y_array[j]= rbf->getValue(x);
 	    	penalty+=GLAMBDA * pow(y_array[j]-f0[j],2.0);
 	}
+                if(std::isnan(value) || std::isinf(value)) return GINF;
+                if(std::isnan(penalty) || std::isinf(penalty)) return GINF;
+	//printf("value: %lf penalty; %lf \n",value,penalty);
     value = value +(penalty);
 	return -value*(1.0+pt);//sameValue*1.0/npoints);
 }

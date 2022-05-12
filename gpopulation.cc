@@ -32,7 +32,7 @@ GPopulation::GPopulation(int gcount,int gsize,vector<GProgram*> p)
         children[i].resize(genome_size);
         for(int j=0;j<genome_size;j++)
         {
-            genome[i][j]=0.001*(2.0 * drand48()-1.0);
+            genome[i][j]=0.1*(2.0 * drand48()-1.0);
         }
     }
     fitness_array.resize(genome_count);
@@ -65,7 +65,8 @@ GPopulation::GPopulation(int gcount,int gsize,GProgram *p)
         children[i].resize(genome_size);
 		for(int j=0;j<genome_size;j++)
 		{
-            genome[i][j]=0.01 * rand()*1.0/RAND_MAX;
+            genome[i][j]=0.1* rand()*1.0/RAND_MAX;
+	    
         }
 	}
     fitness_array.resize(genome_count);
