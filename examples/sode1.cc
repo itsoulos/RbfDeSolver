@@ -33,21 +33,21 @@ int	getnode()
 
 int	getnpoints()
 {
-	return 10;
+	return 50;
 }
 
 double	systemfun(int node, double x, double *y, double *yy)
 {
 	double p1,p2;
-	p1=yy[0]*y[1]-(cos(x)-sin(x));
-	p2=yy[1]-y[0]*y[1]-exp(x)+sin(x);
+	p1=yy[0]-cos(x)-y[0]*y[0]-y[1]+(x*x+sin(x)*sin(x));//yy[0]*y[1]-(cos(x)-sin(x));
+	p2=yy[1]-2.0*x+x*x*sin(x)-y[0]*y[1];//yy[1]-y[0]*y[1]-exp(x)+sin(x);
 	return pow(p1,2.0)+pow(p2,2.0);
 }
 
 void	systemf0(int node,double *f0)
 {
 	f0[0]=0;
-	f0[1]=1;
+	f0[1]=0;
 }
 
 }

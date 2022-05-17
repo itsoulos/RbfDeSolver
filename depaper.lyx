@@ -4756,6 +4756,9 @@ SODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.1\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -4800,6 +4803,9 @@ SODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $6.4\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4844,6 +4850,9 @@ PDE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.1\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -4888,6 +4897,9 @@ PDE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.2\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -4932,6 +4944,9 @@ PDE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.4\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4976,6 +4991,9 @@ PDE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.4\times10^{-3}$
+\end_inset
+
 
 \end_layout
 

@@ -1,2 +1,0 @@
-TEMPLATE =lib
-SOURCES =ode2.cc

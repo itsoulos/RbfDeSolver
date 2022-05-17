@@ -18,47 +18,47 @@ extern "C"
 
 double	getx0()
 {
-	return 2.0;
+	return 1.0;
 }
 
 double	getx1()
 {
-	return 4.0;
+	return 2.0;
 }
 
 int	getkind()
 {
-	return 2;
+	return 1;
 }
 
 int	getnpoints()
 {
-	return 20;
+	return 50;
 }
 
 double	getf0()
 {
-	return 3.0;
+	return 3.0/sin(1.0);
 }
 
 double	getff0()
 {
-	return 3.0;
+	return 10.0;
 }
 
 double	getf1()
 {
-	return 0.0;
+	return sin(10.0);
 }
 
 double	ode1ff(double x,double y,double yy)
 {
-	return 0.0;
+	return yy-(1.0-y*cos(x))/sin(x);
 }
 
 double	ode2ff(double x,double y,double yy,double yyy)
 {
-	return yyy-2.0 * y-18.0 * sin(18.0 * y) +1.0/(2*x*log(x))*yy;
+	return yyy+100.0 * y;
 }
 
 }

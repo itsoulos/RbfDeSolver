@@ -52,27 +52,27 @@ int	getbpoints()
 
 double	f0(double y)
 {
-	return 0.0;
+	return  y  *  y * y;
 }
 
 double	f1(double y)
 {
-	return sin(1)*cos(y);
+	return (1+y*y*y)*exp(-1.0);
 }
 
 double g0(double x)
 {
-	return sin(x);
+	return x * exp(-x);
 }
 
 double g1(double x)
 {
-	return sin(x)*cos(1.0);
+	return (x+1)*exp(-x);
 }
 
 double pde(double x, double y, double v, double x1, double y1, double x2, double y2)
 {
-	return x2+y2+2.0*v;
+	return x2+y2-(x+y*y*y)*exp(-x);
 }
 
 }

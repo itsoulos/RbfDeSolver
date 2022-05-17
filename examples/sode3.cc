@@ -33,44 +33,18 @@ int	getnode()
 
 int	getnpoints()
 {
-	return 10;
+	return 50;
 }
 
 double	systemfun(int node, double x, double *y, double *yy)
 {
-	double a=yy[0]-cos(x);
-	double b=yy[1]+y[0];
-	double c=yy[2]-y[1];
-	double d=yy[3]+y[2];
-	double e=yy[4]-y[3];
-	return a*a+b*b+c*c+d*d*e*e;
-}
-
-void	systemder(int node, double x, double *y, double *yy,double dy,double dyy,double *res)
-{
-	if(node==0)
-	{
-		res[0]=dyy; res[1]=dy; res[2]=0; res[3]=0; res[4]=0;
-	}
-	else
-	if(node==1)
-	{
-		res[0]=0; res[1]=dyy; res[2]=-dy; res[3]=0; res[4]=0;
-	}
-	else
-	if(node==2)
-	{
-		res[0]=0; res[1]=0; res[2]=dyy; res[3]=dy; res[4]=0;
-	}
-	else
-	if(node==3)
-	{
-		res[0]=0; res[1]=0; res[2]=0; res[3]=dyy; res[4]=-dy;
-	}
-	else
-	{
-		res[0]=0;res[1]=0;res[2]=0;res[3]=0;res[4]=dyy;
-	}
+	double p1,p2,p3,p4,p5;
+	p1=yy[0]-cos(x);//yy[0]*y[1]-(cos(x)-sin(x));
+	p2=yy[1]+y[0];//yy[1]-y[0]*y[1]-exp(x)+sin(x);
+        p3=yy[2]-y[1];
+	p4=yy[3]+y[2];
+	p5=yy[4]-y[3];
+	return pow(p1,2.0)+pow(p2,2.0)+pow(p3,2.0)+pow(p4,2.0)+pow(p5,2.0);
 }
 
 void	systemf0(int node,double *f0)

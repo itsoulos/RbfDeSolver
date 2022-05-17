@@ -1,2 +1,2 @@
-TEMPLATE=lib
+TEMPLATE =lib
 SOURCES =ode2.cc
