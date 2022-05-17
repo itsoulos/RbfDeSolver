@@ -54,6 +54,18 @@ extern int threads;
 extern int weights;
 
 /**
+ * @brief localSearchGenerations The number of iterations before
+ * the local search method will be applied.
+ */
+extern int localSearchGenerations;
+
+/**
+ * @brief localSearchChromosomes The number of chromosomes that will participate into
+ * local search.
+ */
+extern int localSearchChromosomes;
+
+/**
  * @brief parseCmdLine This method parses the command line.
  * @param args The arguments of the command line.
  */

@@ -366,7 +366,8 @@ void	GPopulation::nextGeneration()
 	select();
 	crossover();
 
-   int localSearchGenerations=100,localSearchChromosomes=20;
+   extern int  localSearchGenerations;
+   extern int localSearchChromosomes;
     if((generation+1)%localSearchGenerations==0)
 	{
         for(int i=0;i<localSearchChromosomes;i++)

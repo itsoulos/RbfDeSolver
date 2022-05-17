@@ -19,6 +19,8 @@ void print_usage()
             "\t--epsilon=<f>	 Specify threshold for termination. Default 1e-7\n"
             "\t--weights=<i>	 Specify the number of RBF weights. Default 1\n"
             "\t--srate=<f>	 Specify selection rate. Default 0.1\n"
+            "\t--lg=<i>      Specify the number of local search generations. Default 100.\n"
+            "\t--li=<i>      Specify the number of local search chromosomes. Default 20.\n"
             "\t--threads=<i> Specify the number of OpenMP threads. Default 1.\n"
             "\t--mrate=<f>	 Specify mutation rate. Default 0.05\n");
 }
@@ -33,6 +35,8 @@ double  mutation_rate=0.1;
 double  selection_rate=0.05;
 int threads=1;
 int weights = 1;
+int localSearchGenerations=100;
+int localSearchChromosomes=20;
 
 void parseCmdLine(QStringList args)
 {
@@ -95,6 +99,16 @@ void parseCmdLine(QStringList args)
         if(param == "--weights")
         {
             weights = value.toInt();
+        }
+        else
+        if(param  == "--lg")
+        {
+            localSearchGenerations=value.toInt();
+        }
+        else
+        if(param == "--li")
+        {
+            localSearchChromosomes =value.toInt();
         }
     }
 }

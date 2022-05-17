@@ -94,7 +94,17 @@ Department of Informatics and Telecommunications, University of Ioannina,
 \end_layout
 
 \begin_layout Abstract
-Write Some abstract here
+A new method for solving differential equations is presented in this work.
+ The solution of the differential equations is done by adapting an artificial
+ neural network RBF to the function under study.
+ The adaptation of the parameters of the network is done with a hybrid genetic
+ algorithm.
+ In addition, this text presents in detail the software developed for the
+ above method in ANSI C ++.
+ The user can code the underlying differential equation either in C++ or
+ in Fortran format.
+ The method was applied to a wide range of test functions of different types
+ and the results are presented and analyzed in detail.
 \end_layout
 
 \begin_layout Section
@@ -134,10 +144,10 @@ literal "false"
 
 \end_inset
 
- etc can be modelled using ordinary differential equations (ODEs), systems
+ etc can be modeled using ordinary differential equations (ODEs), systems
  of differential equations (SODEs) and partial differential equations (PDEs).
- Due to the importance of differential equations, several methods have been
- appeared in the relevant literature such as Runge Kutta methods 
+ Due to the importance of differential equations, several methods have appeared
+ in the relevant literature, such as Runge Kutta methods 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "de_rk1,de_rk2,de_rk3"
@@ -154,7 +164,7 @@ literal "false"
 \end_inset
 
 .
- Also, many methods based on machine learning models have appeared such
+ Also, many methods based on machine learning models have appeared, such
  as methods that utilize neural networks 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -180,9 +190,9 @@ literal "false"
 \end_inset
 
  etc.
- Also, in the recent years a variety of methods that take advantage of modern
- GPU architectures have been appeared for the solution of differential equations
- 
+ Also, in recent years a variety of methods that take advantage of modern
+ GPU architectures have been published for the solution of differential
+ equations 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "de_gpu1,de_gpu2,de_gpu3"
@@ -210,7 +220,7 @@ literal "true"
 
 , that creates solutions of differential equations in closed analytical
  form.
- The current work proposed the incrorporation of a modified genetic algorithm
+ The current work proposed the incorporation of a modified genetic algorithm
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -228,7 +238,7 @@ literal "false"
 \end_inset
 
  to tackle the problem of solving differential equations.
- RBF are usually expressed as:
+ RBFs are usually expressed as:
 \series bold
 
 \begin_inset Formula 
@@ -297,7 +307,7 @@ where the value
 \end_layout
 
 \begin_layout Standard
-RBF networks have been used in many practical prolems from various areas
+RBF networks have been used in many practical problems in various areas
  such as physics 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -331,7 +341,7 @@ literal "false"
 \end_inset
 
  etc.
- In the current work the RBF network is used as an estimator of the differential
+ In current work, the RBF network is used as an estimator of the differential
  equations for the cases of ordinary differential equations (ODEs), systems
  of ordinary differential equations (SODEs) and partial differential equations
  (PDEs).
@@ -351,7 +361,19 @@ literal "false"
 \end_inset
 
  programming library is needed.
- 
+ Also, the software utilizes the qmake installation utility of the QT software
+ library, freely available from 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://qt.io
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -397,7 +419,7 @@ noprefix "false"
 \end_inset
 
  some conclusions and guidelines for future improvements of the method and
- the accompanyied software are given.
+ the accompanied software are given.
 \end_layout
 
 \begin_layout Section
@@ -412,7 +434,7 @@ name "sec:Detailed-description"
 \end_layout
 
 \begin_layout Standard
-In the proposed method an artificial RBF network with 
+In the proposed method, an artificial RBF network with 
 \begin_inset Formula $n$
 \end_inset
 
@@ -424,15 +446,15 @@ In the proposed method an artificial RBF network with
 \series bold
  
 \series default
-The genetic algorithms are biolgically inspired programming tools,
+The genetic algorithms are biologically inspired programming tools
 \series bold
  
 \series default
-that maintain and evolve a pool of candidate solutions of an optimization
+that maintain and evolve a pool of candidate solutions to an optimization
  problem.
  The members of this pool are usually called chromosomes or genetic population.
- The evolution of the population is performed through the operations of
- mutation and crossover.
+ The evolution of the population is done through the operations of mutation
+ and crossover.
  Among other advantages, genetic algorithms are distinguished for their
  simplicity in implementation, for the ease of their parallelization, their
  tolerance for errors, etc.
@@ -472,7 +494,7 @@ noprefix "false"
 \begin_inset Formula $\sigma$
 \end_inset
 
- values of every gaussian unit and the remaining 
+ values of every Gaussian unit and the remaining 
 \begin_inset Formula $n$
 \end_inset
 
@@ -491,7 +513,7 @@ noprefix "false"
 \end_inset
 
 .
- In addition, in the proposed implementation a local optimization method
+ In addition, in the proposed implementation, a local optimization method
  is periodically applied to some randomly selected chromosomes of the population.
  This approach is performed in order to improve the accuracy of the solution
  produced by the genetic algorithm, but also to speed up the solution of
@@ -509,8 +531,8 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In the following subsection the proposed method is outlined in detail as
- well as the fitness calculation for every case of differential equation.
+In the following subsections, the proposed method is outlined in detail
+ as well as the fitness calculation for every case of differential equation.
 \end_layout
 
 \begin_layout Subsection
@@ -727,7 +749,7 @@ Genetic Operators
 \series bold
 Selection 
 \series default
-procedure: During selection the chromosomes are classified according to
+procedure: During selection, the chromosomes are classified according to
  their suitability.
  The best
 \series bold
@@ -751,7 +773,7 @@ procedure:
 \series bold
  
 \series default
-During this process 
+During this process, 
 \begin_inset Formula $p_{s}\times N_{c}$
 \end_inset
 
@@ -772,7 +794,7 @@ For every pair
 \begin_inset Formula $(z,w)$
 \end_inset
 
- of parents two new offsprings 
+ of parents, two new offsprings 
 \begin_inset Formula $\tilde{z}$
 \end_inset
 
@@ -995,13 +1017,20 @@ name "subsec:Fitness-evaluation"
 \end_layout
 
 \begin_layout Standard
-The evaluation of the fitness is different for every case of diferrential
+The evaluation of the fitness is different for every case of differential
  equations, although in every case penalization is used to enforce the initial
  or the boundary conditions of every case.
 \end_layout
 
 \begin_layout Subsection
 Ode case 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Ode-case"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1024,7 +1053,7 @@ with
  The initial conditions are expressed as: 
 \begin_inset Formula 
 \begin{equation}
-g_{i}\left(x,y,y^{(1)},\ldots,y^{(n)}\right)_{|x=t_{i}},i=1,\ldots,n
+h_{i}\left(x,y,y^{(1)},\ldots,y^{(n)}\right)_{|x=t_{i}},i=1,\ldots,n
 \end{equation}
 
 \end_inset
@@ -1099,7 +1128,7 @@ Calculate
 Calculate
 \series default
  the penalty value for the initial conditions: 
-\begin_inset Formula $P_{r}=\lambda\sum_{k=1}^{n}g_{k}^{2}\left(x,r(x),r^{(1)}(x),\ldots,r^{(n)}(x)\right)_{|x=t_{k}}$
+\begin_inset Formula $P_{r}=\lambda\sum_{k=1}^{n}h_{k}^{2}\left(x,r(x),r^{(1)}(x),\ldots,r^{(n)}(x)\right)_{|x=t_{k}}$
 \end_inset
 
 , where 
@@ -1123,6 +1152,13 @@ Return
 
 \begin_layout Subsection
 Sode case 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Sode-case"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1151,9 +1187,85 @@ y_{1}(a) & = & y_{1a}\\
 y_{2}(a) & = & y_{2a}\\
 \vdots & \vdots & \vdots\\
 y_{k}(a) & = & y_{ka}
-\end{array}\right)
+\end{array}\right)\label{eq:eqinit}
 \end{equation}
 
+\end_inset
+
+The fitness calculation 
+\begin_inset Formula $f(g)$
+\end_inset
+
+ for a given chromosome 
+\begin_inset Formula $g$
+\end_inset
+
+ has as follows:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Create
+\series default
+ 
+\begin_inset Formula $T=\left\{ x_{1}=a,x_{2},x_{3},\ldots,x_{N}=b\right\} $
+\end_inset
+
+ a set of equidistant points.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Split
+\series default
+ the chromosome 
+\begin_inset Formula $g$
+\end_inset
+
+ into 
+\begin_inset Formula $k$
+\end_inset
+
+ parts and create the corresponding RBF networks 
+\begin_inset Formula $r_{i}=r\left(g_{i}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the errors: 
+\begin_inset Formula $E_{r_{i}}=\sum_{j=1}^{N}\left(\psi_{i}\left(x_{j},r_{1},r_{1}^{(1)},r_{2},r_{2}^{(1)},\ldots,r_{k},r_{k}^{(1)}\right)\right)^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the penalty values: 
+\begin_inset Formula $P_{r_{i}}=\lambda\left(r_{i}\left(a\right)-y_{ia}\right)^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the total fitness value: 
+\begin_inset Formula $f(g)=\sum_{i=1}^{k}\left(E_{r_{i}}+P_{r_{i}}\right)$
 \end_inset
 
 
@@ -1161,6 +1273,176 @@ y_{k}(a) & = & y_{ka}
 
 \begin_layout Subsection
 Pde case
+\end_layout
+
+\begin_layout Standard
+Consider a Pde in the following form:
+\begin_inset Formula 
+\begin{equation}
+h\left(x,y,\Psi(x,y),\frac{\partial}{\partial x}\Psi(x,y),\frac{\partial}{\partial y}\Psi(x,y),\frac{\partial^{2}}{\partial x^{2}}\Psi(x,y),\frac{\partial^{2}}{\partial y^{2}}\Psi(x,y)\right)=0
+\end{equation}
+
+\end_inset
+
+with 
+\begin_inset Formula $x\in[a,b],\ y\in[c,d]$
+\end_inset
+
+.
+ For Dirichlet boundary conditions we have the following condition functions:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Psi(a,y)=f_{0}(y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Psi(b,y)=f_{1}(y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Psi(x,c)=g_{0}(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\Psi(x,d)=g_{1}(x)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The steps to calculate the fitness 
+\begin_inset Formula $f(g)$
+\end_inset
+
+ for any given chromosome are the following:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Construct
+\series default
+ the set 
+\begin_inset Formula $T=\left\{ \left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right),\ldots,\left(x_{N},y_{N}\right)\right\} $
+\end_inset
+
+ uniformly sampled points in 
+\begin_inset Formula $[a,b]\times[c,d]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Construct
+\series default
+ the set 
+\begin_inset Formula $x_{B}=\left\{ x_{b1},x_{b2},\ldots,x_{bM}\right\} $
+\end_inset
+
+ equidistant points in 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Construct
+\series default
+ the set 
+\begin_inset Formula $y_{B}=\left\{ y_{b1},y_{b2},\ldots,y_{bM}\right\} $
+\end_inset
+
+equidistant points in 
+\begin_inset Formula $[c,d]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Set
+\series default
+ 
+\begin_inset Formula $r=r(g)$
+\end_inset
+
+ the RBF network for the chromosome 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the quantity 
+\begin_inset Formula $E_{r}$
+\end_inset
+
+ as 
+\begin_inset Formula 
+\[
+E_{r}=\sum_{i=1}^{N}h\left(x_{i},y_{i},r\left(x_{i},y_{i}\right),\frac{\partial}{\partial x}r\left(x_{i},y_{i}\right),\frac{\partial}{\partial y}r\left(x_{i},y_{i}\right)\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the following penalty values:
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+P_{1r} & = & \lambda\sum_{i=1}^{M}\left(r\left(a,y_{bi}\right)-f_{0}\left(y_{bi}\right)\right)^{2}\\
+P_{2r} & = & \lambda\sum_{i=1}^{M}\left(r\left(b,y_{bi}\right)-f_{1}\left(y_{bi}\right)\right)^{2}\\
+P_{3r} & = & \lambda\sum_{i=1}^{M}\left(r\left(x_{bi},c\right)-g_{0}\left(x_{bi}\right)\right)^{2}\\
+P_{4r} & = & \lambda\sum_{i=1}^{M}\left(r\left(x_{bi},d\right)-g_{1}\left(x_{bi}\right)\right)^{2}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Calculate
+\series default
+ the total fitness as 
+\begin_inset Formula $f(g)=E_{r}+P_{1r}+P_{2r}+P_{3r}+P_{4r}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1179,12 +1461,226 @@ Installation
 \end_layout
 
 \begin_layout Standard
-The user can program his differential equations either in c++ or in Fortran.
- In this section examples for each case (ODE, SODE and PDE) are presented.
+The package is distributed in a zip file from the relevant Github URL 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/itsoulos/RbfDeSolver
+\end_layout
+
+\end_inset
+
+ named RbfDeSolver-master.zip and under UNIX systems the user must execute
+ the following commands to compile the software:
+\end_layout
+
+\begin_layout Enumerate
+unzip RbfDeSolver-master.zip
+\end_layout
+
+\begin_layout Enumerate
+cd RbfDeSolver
+\end_layout
+
+\begin_layout Enumerate
+qmake .
+\end_layout
+
+\begin_layout Enumerate
+make clean
+\end_layout
+
+\begin_layout Enumerate
+make
+\end_layout
+
+\begin_layout Standard
+The final outcome of the compilation is the software 
+\emph on
+RbfDeSolver.
+ 
+\emph default
+The differential equations should be compiled separately: every differential
+ equation is a different file to be compiled as a shared object using the
+ qmake utility.
+ For example, in order to compile the ODE of the file 
+\emph on
+ode1.s
+\emph default
+o located under examples subdirectory, the user should create a 
+\emph on
+ode1.pro
+\emph default
+ file with the following contents:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,frame={tlbr}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+TEMPLATE=lib
+\end_layout
+
+\begin_layout Plain Layout
+
+SOURCES=ode1.cc
+\end_layout
+
+\end_inset
+
+Afterwards, the compilation of the ode is performed using the following
+ commands:
+\end_layout
+
+\begin_layout Enumerate
+qmake ode1.pro
+\end_layout
+
+\begin_layout Enumerate
+make
+\end_layout
+
+\begin_layout Standard
+The outcome of the compilation is the shared library 
+\emph on
+ode1.so
 \end_layout
 
 \begin_layout Subsection
 Command line options
+\end_layout
+
+\begin_layout Standard
+The software 
+\emph on
+RbfDeSolver
+\emph default
+ has the following command line options:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+help.
+ Prints a help screen and terminates.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+kind=DE_KIND.
+ The string value DE_KIND determines the kind of differential equation to
+ be used and the accepted values are: ode, sode, pde.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+problem=FILE, the string parameter file determines the path to the differential
+ equation to be solved.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+count=K, set as K, the number of chromosomes in the genetic population.
+ The default value is 500.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+random=R, set as R, the seed for the random number generation.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+generations=G, set as G, the maximum number of generations allowed.
+ The default value is 2000.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+epsilon=E, set as E, a small positive value used in the comparisons as well
+ as the termination criterion of the genetic algorithm.
+ The default value is 
+\begin_inset Formula $10^{-7}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+weights=W, set as W, the number of weights for the RBF network.
+ The default value is 1.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+srate=S, set as S, the selection rate (parameter 
+\begin_inset Formula $p_{s})$
+\end_inset
+
+ of the genetic algorithm.
+ The default value is 0.1
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+mrate=M, set as M, the mutation rate (parameter 
+\begin_inset Formula $p_{m}$
+\end_inset
+
+ ) of the genetic algorithm.
+ The default value is 0.05 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+lg=G, set as G, the number of generations that should be passed in the genetic
+ algorithm before the local search method will be applied.
+ The default value is 100.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+li=I, set as I, the number of chromosomes that will participate in the local
+ search procedure.
+ The default value is 20.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $--$
+\end_inset
+
+threads=T, set as T, the number of OpenMp threads.
+ The default value is 1.
 \end_layout
 
 \begin_layout Subsection
@@ -1240,33 +1736,60 @@ getx1()
 \family typewriter
 getkind()
 \family default
-: Returns 1,2 or 3.
- Code 1 indicates that the ODE is of first order and the boundary condition
+: Returns 1,2 or 3:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the value is 1 then the ODE is of first order and the boundary condition
  is of the form: 
 \begin_inset Formula $y(x_{0})=y_{0}$
 \end_inset
 
 .
- Code 2 indicates that the ODE is of second order with boundary conditions
+ 
+\end_layout
+
+\begin_layout Enumerate
+If the value is 2 then the ODE is of second order with boundary conditions
  of the form: 
 \begin_inset Formula $y(x_{0})=y_{0},\ y'(x_{0})=y'_{0}$
 \end_inset
 
 .
- Finally, code 3 indicates that the ODE is of second order with boundary
- conditions of the form: 
+ 
+\end_layout
+
+\begin_layout Enumerate
+Code 3 indicates that the ODE is of second order with boundary conditions
+ of the form: 
 \begin_inset Formula $y(x_{0})=y_{0},\ y(x_{1})=y_{1}$
 \end_inset
 
 .
 \end_layout
 
+\end_deeper
 \begin_layout Enumerate
 
 \family typewriter
 getnpoints()
 \family default
-: Returns the number of training points.
+: Returns the number of equidistant training points (value 
+\begin_inset Formula $N$
+\end_inset
+
+ in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Ode-case"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
@@ -1312,7 +1835,7 @@ ode1ff(x,y,yy)
 \family default
 : If the ODE is of first order, then the purpose of the tool is to minimize
  the function 
-\begin_inset Formula $\mbox{ode1ff}(x,M(x),M'(x))$
+\begin_inset Formula $\mbox{ode1ff}(x,r(x),r^{(1)}(x))$
 \end_inset
 
 , for different values of 
@@ -1324,17 +1847,12 @@ ode1ff(x,y,yy)
 \end_inset
 
 .
- The function 
-\begin_inset Formula $M(x)$
-\end_inset
-
- is a function that arise from the procedure of grammatical evolution.
  The parameter y represents 
-\begin_inset Formula $M(x)$
+\begin_inset Formula $r(x)$
 \end_inset
 
  and the parameter yy represents 
-\begin_inset Formula $M'(x)$
+\begin_inset Formula $r^{(1)}(x)$
 \end_inset
 
 .
@@ -1348,10 +1866,10 @@ ode2ff(x,y,yy,yyy)
 \family default
 : If the ODE is of second order, then the 
 \family typewriter
-DeSolver
+tool
 \family default
  tries to minimize the function 
-\begin_inset Formula $\mbox{ode2ff}(x,M(x),M'(x),M''(x))$
+\begin_inset Formula $\mbox{ode2ff}(x,r(x),r^{(1)}(x),r^{(2)}(x))$
 \end_inset
 
 , for different values of 
@@ -1362,25 +1880,16 @@ DeSolver
 \begin_inset Formula $[x_{0},x_{1}].$
 \end_inset
 
- As for 
-\family typewriter
-ode1ff
-\family default
- the function 
-\begin_inset Formula $M(x)$
-\end_inset
-
- emerges from the process of grammatical evolution.
  The parameter y represents 
-\begin_inset Formula $M(x)$
+\begin_inset Formula $r(x)$
 \end_inset
 
 , the parameter yy represents 
-\begin_inset Formula $M'(x)$
+\begin_inset Formula $r^{(1)}(x)$
 \end_inset
 
  and the parameter yyy represents 
-\begin_inset Formula $M''(x)$
+\begin_inset Formula $r^{(2)}(x)$
 \end_inset
 
 .
@@ -1413,414 +1922,151 @@ name "c++-ode"
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\series bold
-extern
-\family default
-\series default
- 
-\family typewriter
-"C"
-\end_layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
 
 \begin_layout Plain Layout
 
-\family typewriter
-{
+extern "C"
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx0()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
 
 {
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
+double getx0()
+\end_layout
 
-}
-\begin_inset Newline newline
-\end_inset
+\begin_layout Plain Layout
 
+{}
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx1()
+double getx1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getkind()
+int getkind()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
+int getnpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getf0()
+double getf0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getf1()
+double getf1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getff0()
+double getff0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-ode1ff(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-yy)
+double ode1ff(double x,double y,double yy)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-}
-\begin_inset Newline newline
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-ode2ff(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-yy,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-yyy)
+double ode2ff(double x,double y,double yy,double yyy)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
-
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
-
-\family typewriter
-\begin_inset Formula $\quad$
-\end_inset
 
 }
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-\family typewriter
-}
+
 \end_layout
 
 \end_inset
@@ -1855,229 +2101,140 @@ name "fortran-ode"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Fortran"
+inline false
+status open
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx0()
+\begin_layout Plain Layout
+
+double precision function getx0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx1()
+double precision function getx1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getkind()
+integer function getkind()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
+integer function getnpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getf0()
+double precision function getf0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getf1()
+double precision function getf1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getff0()
+double precision function getff0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-ode1ff(x,y,yy)
+double precision function ode1ff(x,y,yy)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x,y,yy
+double precision x,y,yy
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-ode2ff(x,y,yy,yyy)
+double precision function ode2ff(x,y,yy,yyy)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x,y,yy,yyy
+double precision x,y,yy,yyy
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
 \end_layout
 
@@ -2086,52 +2243,9 @@ end
 
 \end_layout
 
-\begin_layout Standard
-The following steps simplify the way to add a new ODE:
-\end_layout
+\end_inset
 
-\begin_layout Enumerate
-Code the ODE either in C++ format or in Fortran format and put the corresponding
- file under the directory 
-\family typewriter
-OdeExamples
-\family default
-.
-\end_layout
 
-\begin_layout Enumerate
-Add the name of the ODE in the text file 
-\family typewriter
-odelist
-\family default
- under the directory named 
-\family typewriter
-OdeExamples
-\family default
-.
-\end_layout
-
-\begin_layout Enumerate
-Execute the script 
-\family typewriter
-makeodes.sh
-\family default
- in the same directory or run the command 
-\family typewriter
-make
-\family default
- in the main directory of the distribution.
-\end_layout
-
-\begin_layout Standard
-The steps above will create a shared library for the equation to be solved
- under the directory 
-\family typewriter
-OdeExamples
-\family default
-.
- Usually, in UNIX systems the shared libraries have the extension .so to
- their names.
 \end_layout
 
 \begin_layout Subsection
@@ -2187,7 +2301,21 @@ getx1()
 \family typewriter
 getnode()
 \family default
-: Returns the number of ODE's in the system (system size).
+: Returns the number of ODE's in the system (parameter 
+\begin_inset Formula $k$
+\end_inset
+
+ in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Sode-case"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Enumerate
@@ -2195,20 +2323,37 @@ getnode()
 \family typewriter
 getnpoints()
 \family default
-: Returns the number of the training points for the system of trial solutions.
+: R Returns the number of equidistant training points (value 
+\begin_inset Formula $N$
+\end_inset
+
+ in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Sode-case"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
 
 \family typewriter
-systemfun(node,x,y,yy)
+\series bold
+systemfun(k,x,y,yy)
 \family default
- : For the SODE case, the aim of the 
+ 
+\series default
+: For the SODE case, the aim of the 
 \family typewriter
-DeSolver
+RbfDeSolver
 \family default
  is to minimize the function 
-\begin_inset Formula $\mbox{systemfun}(n,x,Y,Y')$
+\begin_inset Formula $\mbox{systemfun}(k,x,Y,Y^{(1)})$
 \end_inset
 
  for values of 
@@ -2220,19 +2365,15 @@ DeSolver
 \end_inset
 
 , where 
-\begin_inset Formula $n$
+\begin_inset Formula $k$
 \end_inset
 
  is the total number of equations in the system, 
 \begin_inset Formula $Y$
 \end_inset
 
- is a vector with elements the 
-\begin_inset Formula $n$
-\end_inset
-
- functions that are produced by the grammatical evolution evaluated at 
-\begin_inset Formula $x$
+ is the vector of Rbf networks 
+\begin_inset Formula $r_{i}(x),\ i=1...k$
 \end_inset
 
  and 
@@ -2240,7 +2381,7 @@ DeSolver
 \end_inset
 
  is a vector with elements the first derivative of these 
-\begin_inset Formula $n$
+\begin_inset Formula $k$
 \end_inset
 
  equations evaluated at 
@@ -2248,11 +2389,7 @@ DeSolver
 \end_inset
 
 .
- The argument node represents the 
-\begin_inset Formula $n$
-\end_inset
-
-, the double precision array y stands for the vector 
+ The double precision array y stands for the vector 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -2265,13 +2402,28 @@ DeSolver
 \end_layout
 
 \begin_layout Enumerate
+
+\series bold
 s
 \family typewriter
 ystemf0(node,f0)
 \family default
-: The argument node stands for the number of differential equations in the
+: 
+\series default
+The argument node stands for the number of differential equations in the
  system and the double precision array f0 with node elements represents
- the vector holding the boundary conditions for each equation in the system.
+ the vector holding the boundary conditions for each equation in the system
+ (vector of equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eqinit"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
@@ -2301,236 +2453,104 @@ name "sode-c++"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
 
-\family typewriter
-\series bold
-extern
-\family default
-\series default
- 
-\family typewriter
-"C" {
+\begin_layout Plain Layout
+
+extern "C" {
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx0()
+double getx0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-{
+{}
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
+\end_layout
+
+\begin_layout Plain Layout
+
+double getx1()
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int getnode()
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int getnpoints()
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double systemfun(int node, double x, double *y, double *yy)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void systemf0(int node,double *f0)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
 }
-\begin_inset Newline newline
+\end_layout
+
 \end_inset
 
 
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx1()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getnode()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-systemfun(
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-node,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-*y,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-*yy)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-void
-\family default
-\series default
- 
-\family typewriter
-systemf0(
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-node,
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-*f0)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
 \end_layout
 
 \end_inset
@@ -2565,208 +2585,122 @@ name "sode-fortran"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Fortran"
+inline false
+status open
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx0()
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
+double precision function getx0()
+\end_layout
+
+\begin_layout Plain Layout
+
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx1()
+double precision function getx1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getnode()
+integer function getnode()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
+integer function getnpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-systemfun(node,x,y,yy)
+double precision function systemfun(node,x,y,yy)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer
-\family default
-\series default
- 
-\family typewriter
-node
+integer node
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x
+double precision x
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-y(node)
+double precision y(node)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-yy(node)
+double precision yy(node)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-systemf0(node,f0)
+integer function systemf0(node,f0)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer
-\family default
-\series default
- 
-\family typewriter
-node
+integer node
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-f0(node)
+double precision f0(node)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
 \end_layout
 
@@ -2775,53 +2709,9 @@ end
 
 \end_layout
 
-\begin_layout Standard
-Like the case of ODEs a similar procedure must be followed in order to add
- a new SODE in the system.
- The steps for this procedure has as follows:
-\end_layout
+\end_inset
 
-\begin_layout Enumerate
-Code the SODE either in C++ format or in Fortran format and put the correspondin
-g file under the directory 
-\family typewriter
-SOdeExamples
-\family default
-.
-\end_layout
 
-\begin_layout Enumerate
-Add the name of the SODE in the text file 
-\family typewriter
-sodelist
-\family default
- under the directory named 
-\family typewriter
-SOdeExamples
-\family default
-.
-\end_layout
-
-\begin_layout Enumerate
-Execute the script 
-\family typewriter
-makesodes.sh
-\family default
- in the same directory or run the command 
-\family typewriter
-make
-\family default
- in the main directory of the distribution.
-\end_layout
-
-\begin_layout Standard
-The steps above will create a shared library for the equation to be solved
- under the directory 
-\family typewriter
-SOdeExamples
-\family default
-.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -3001,14 +2891,17 @@ g1(x)
 \begin_layout Enumerate
 
 \family typewriter
+\series bold
 pde(x,y,v,x1,y1,x2,y2)
 \family default
-: For the PDE case 
+: 
+\series default
+For the PDE case 
 \family typewriter
-DeSolver
+RbfDeSolver
 \family default
  minimizes the function 
-\begin_inset Formula $\mbox{pde}\left(x,y,M(x,y),\frac{\partial M(x,y)}{\partial x},\frac{\partial M(x,y)}{\partial y},\frac{\partial^{2}M(x,y)}{\partial x^{2}},\frac{\partial^{2}M(x,y)}{\partial y^{2}}\right)$
+\begin_inset Formula $\mbox{pde}\left(x,y,r(x,y),\frac{\partial r(x,y)}{\partial x},\frac{\partial r(x,y)}{\partial y},\frac{\partial^{2}r(x,y)}{\partial x^{2}},\frac{\partial^{2}r(x,y)}{\partial y^{2}}\right)$
 \end_inset
 
 , where 
@@ -3019,13 +2912,12 @@ DeSolver
 \begin_inset Formula $y\in[y_{0},y_{1}].$
 \end_inset
 
- The function 
-\begin_inset Formula $M(x,y)$
+ The argument v corresponds to 
+\begin_inset Formula $r(x,y).$
 \end_inset
 
- arises from the grammatical evolution and corresponds to the v argument.
  The argument x1 corresponds to the first derivative of 
-\begin_inset Formula $M(x,y)$
+\begin_inset Formula $r(x,y)$
 \end_inset
 
  with respect to 
@@ -3033,15 +2925,15 @@ DeSolver
 \end_inset
 
 , y1 corresponds to the first derivative of 
-\begin_inset Formula $M(x,y)$
+\begin_inset Formula $r(x,y)$
 \end_inset
 
  with respect to y, x2 corresponds to the second derivative of 
-\begin_inset Formula $M(x,y)$
+\begin_inset Formula $r(x,y)$
 \end_inset
 
  with respect to x and the y2 corresponds to the second derivative of 
-\begin_inset Formula $M(x,y)$
+\begin_inset Formula $r(x,y)$
 \end_inset
 
  with respect to y.
@@ -3074,425 +2966,181 @@ name "pde-c++"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={C++}"
+inline false
+status open
 
-\family typewriter
-\series bold
-extern
-\family default
-\series default
- 
-\family typewriter
-"C" {
+\begin_layout Plain Layout
+
+extern "C" {
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx0()
+double getx0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double getx1()
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double gety0()
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double gety1()
+\end_layout
+
+\begin_layout Plain Layout
+
 {
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
 }
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-getx1()
+int getnpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+int getbpoints()
+\end_layout
+
+\begin_layout Plain Layout
+
 {
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-gety0()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-gety1()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-int
-\family default
-\series default
- 
-\family typewriter
-getbpoints()
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-f0(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-f1(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-g0(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-} 
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-g1(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-}
-\begin_inset Newline newline
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-pde(
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-v,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-x1,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y1,
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-\series bold
-\begin_inset Formula $\quad\quad\quad\quad$
-\end_inset
-
-double
-\family default
-\series default
- 
-\family typewriter
-x2,
-\family default
- 
-\family typewriter
-\series bold
-double
-\family default
-\series default
- 
-\family typewriter
-y2)
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
-{
-\end_layout
-
-\begin_layout Plain Layout
-
-\family typewriter
 }
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
+\end_layout
+
+\begin_layout Plain Layout
+
+double f0(double y)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double f1(double y)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+double g0(double x)
+\end_layout
+
+\begin_layout Plain Layout
+
+{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double g1(double x)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+double pde(double x, double y, double v, double x1, double y1,
+\end_layout
+
+\begin_layout Plain Layout
+
+double x2, double y2)
+\end_layout
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\begin_layout Plain Layout
+
 }
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3527,311 +3175,183 @@ name "Fortran-PDE"
 \end_layout
 
 \begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Fortran"
+inline false
+status open
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx0()
+\begin_layout Plain Layout
+
+double precision function getx0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-getx1()
+double precision function getx1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-gety0()
+double precision function gety0()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-gety1()
+double precision function gety1()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getnpoints()
+integer function getnpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-integer function
-\family default
-\series default
- 
-\family typewriter
-getbpoints()
+integer function getbpoints()
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-f0(y)
+double precision function f0(y)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-y
+double precision y
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-f1(y)
+double precision function f1(y)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-y
+double precision y
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-g0(x)
+double precision function g0(x)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x
+double precision x
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-g1(x)
+double precision function g1(x)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x
+double precision x
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Plain Layout
 
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision function
-\family default
-\series default
- 
-\family typewriter
-pde(x,y,v,x1,y1,x2,y2)
+double precision function pde(x,y,v,x1,y1,x2,y2)
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
-double precision
-\family default
-\series default
- 
-\family typewriter
-x,y,v,x1,y1,x2,y2
+double precision x,y,v,x1,y1,x2,y2
 \end_layout
 
 \begin_layout Plain Layout
 
-\family typewriter
-\series bold
 end
 \end_layout
 
@@ -3840,52 +3360,9 @@ end
 
 \end_layout
 
-\begin_layout Standard
-Similarly to the case of ODEs and SODEs, the following procedure must be
- followed to add a new PDE in the system:
-\end_layout
+\end_inset
 
-\begin_layout Enumerate
-Code the PDE either in C++ format or in Fortran format and put the corresponding
- file under the directory 
-\family typewriter
-PdeExamples
-\family default
-.
-\end_layout
 
-\begin_layout Enumerate
-Add the name of the PDE in the text file 
-\family typewriter
-pdelist
-\family default
- under the directory named 
-\family typewriter
-PdeExamples
-\family default
-.
-\end_layout
-
-\begin_layout Enumerate
-Execute the script 
-\family typewriter
-makepdes.sh
-\family default
- in the same directory or run the command 
-\family typewriter
-make
-\family default
- in the main directory of the distribution.
-\end_layout
-
-\begin_layout Standard
-The steps above will create a shared library for the equation to be solved
- under the directory 
-\family typewriter
-PdeExamples
-\family default
-.
- 
 \end_layout
 
 \begin_layout Section
@@ -3897,6 +3374,18 @@ name "sec:Experimental-results"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+A series of test functions used in various research papers 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "de_nn1,de_tsoulos"
+literal "false"
+
+\end_inset
+
+ have been used here for testing purposes.
 \end_layout
 
 \begin_layout Subsection
@@ -4346,10 +3835,47 @@ Experimental results
 \end_layout
 
 \begin_layout Standard
+To validate the ability of the proposed method to tackle differential equations,
+ a series of experiments were made using the following values for the weight
+ number of the Rbf network: 
+\begin_inset Formula $w=5,\ w=10,\ w=15$
+\end_inset
+
+.
+ The values for the parameters of the experiments are listed in the Table
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Experimental-parameters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ All the experiments were conducted 30 times using different seeds for the
+ random number generator and the average error was measured.
+ The random number generator used was the drand48() function of the C programmin
+g language.
+ The experimental results are listed in the Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Experimental-results."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -4598,11 +4124,7 @@ ITERMAX
 \begin_inset Float table
 wide false
 sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -4646,7 +4168,10 @@ EQUATION
 \begin_inset Text
 
 \begin_layout Plain Layout
-W=5
+\begin_inset Formula $w=5$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4655,7 +4180,10 @@ W=5
 \begin_inset Text
 
 \begin_layout Plain Layout
-W=10
+\begin_inset Formula $w=10$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4664,7 +4192,10 @@ W=10
 \begin_inset Text
 
 \begin_layout Plain Layout
-W=20
+\begin_inset Formula $w=15$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4684,6 +4215,9 @@ ODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.9\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4705,6 +4239,9 @@ ODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.4\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4725,6 +4262,9 @@ ODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.1\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -4746,6 +4286,9 @@ ODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.5\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -4766,6 +4309,9 @@ ODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $6.6\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -4787,6 +4333,9 @@ ODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $9.4\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -4807,6 +4356,9 @@ ODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $8.8\times10^{-7}$
+\end_inset
+
 
 \end_layout
 
@@ -4828,6 +4380,9 @@ ODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $8.7\times10^{-7}$
+\end_inset
+
 
 \end_layout
 
@@ -4848,6 +4403,9 @@ ODE5
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $9.4\times10^{-1}$
+\end_inset
+
 
 \end_layout
 
@@ -4869,6 +4427,9 @@ ODE5
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $5.9\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -4889,6 +4450,9 @@ NLODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.2\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4910,6 +4474,9 @@ NLODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.9\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4930,6 +4497,9 @@ NLODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $4.6\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4951,6 +4521,9 @@ NLODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.1\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -4971,6 +4544,9 @@ NLODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $5.7\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -4992,6 +4568,9 @@ NLODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $5.4\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -5012,6 +4591,9 @@ NLODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.2\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -5033,6 +4615,9 @@ NLODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.6\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -5053,6 +4638,9 @@ SODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.8\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -5062,6 +4650,9 @@ SODE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.9\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -5091,6 +4682,9 @@ SODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.4\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -5100,6 +4694,9 @@ SODE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.2\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -5129,6 +4726,9 @@ SODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.1\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -5138,6 +4738,9 @@ SODE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $8.1\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -5167,6 +4770,9 @@ SODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $1.4\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -5176,6 +4782,9 @@ SODE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $4.4\times10^{-6}$
+\end_inset
+
 
 \end_layout
 
@@ -5205,6 +4814,9 @@ PDE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.7\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -5214,6 +4826,9 @@ PDE1
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $6.8\times10^{-3}$
+\end_inset
+
 
 \end_layout
 
@@ -5243,6 +4858,9 @@ PDE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $3.2\times10^{-3}$
+\end_inset
+
 
 \end_layout
 
@@ -5252,6 +4870,9 @@ PDE2
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $2.1\times10^{-5}$
+\end_inset
+
 
 \end_layout
 
@@ -5281,6 +4902,9 @@ PDE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.9\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -5290,6 +4914,9 @@ PDE3
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $4.9\times10^{-4}$
+\end_inset
+
 
 \end_layout
 
@@ -5319,6 +4946,9 @@ PDE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $8\times10^{-2}$
+\end_inset
+
 
 \end_layout
 
@@ -5328,6 +4958,9 @@ PDE4
 \begin_inset Text
 
 \begin_layout Plain Layout
+\begin_inset Formula $7.8\times10^{-3}$
+\end_inset
+
 
 \end_layout
 
@@ -5359,6 +4992,19 @@ PDE4
 
 \end_layout
 
+\begin_layout Standard
+As the experimental results show, the proposed method solves the vast majority
+ of differential equations even when the number of weights is relatively
+ small.
+ However, adding weights seems to have more positive effects on difficult
+ problems, and especially in the case of partial differential equations.
+ Of course, increasing the number of weights implies increased execution
+ times and, for this reason, the use of parallel processing techniques is
+ necessary.
+ In the application, there is the possibility of using more processing threads
+ through the OpenMP library.
+\end_layout
+
 \begin_layout Section
 Conclusions
 \begin_inset CommandInset label
@@ -5370,12 +5016,33 @@ name "sec:Conclusions"
 
 \end_layout
 
+\begin_layout Standard
+A method for solving differential equations is presented here, accompanied
+ by the corresponding software.
+ The method utilizes RBF networks to solve differential equations and the
+ enforcement of initial and boundary conditions was done using penalty factors.
+ The network configuration was adapted using a hybrid genetic algorithm,
+ in which a local optimization method is applied to a randomly selected
+ set of chromosomes per distinct number of generations.
+\end_layout
+
+\begin_layout Standard
+The software developed in the context of this work was also presented.
+ The software was written in C++ using the open source library QT, so that
+ it can be run on most operating systems.
+ The user can encode the differential equation in either C++ or Fortran
+ by writing a series of functions.
+ Future extensions of the method may include more efficient methods of initializ
+ing network weights as well as more advanced methods of terminating the
+ genetic algorithm.
+\end_layout
+
 \begin_layout Subsection*
 Compliance with Ethical Standards 
 \end_layout
 
 \begin_layout Standard
-All authors declare that they have no has no conict of interest.
+All authors declare that they have no has no conflict of interest.
  
 \end_layout
 
