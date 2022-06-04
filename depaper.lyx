@@ -1128,7 +1128,11 @@ Calculate
 Calculate
 \series default
  the penalty value for the initial conditions: 
-\begin_inset Formula $P_{r}=\lambda\sum_{k=1}^{n}h_{k}^{2}\left(x,r(x),r^{(1)}(x),\ldots,r^{(n)}(x)\right)_{|x=t_{k}}$
+\begin_inset Formula 
+\begin{equation}
+P_{r}=\lambda\sum_{k=1}^{n}h_{k}^{2}\left(x,r(x),r^{(1)}(x),\ldots,r^{(n)}(x)\right)_{|x=t_{k}}
+\end{equation}
+
 \end_inset
 
 , where 
