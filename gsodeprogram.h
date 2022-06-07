@@ -136,6 +136,7 @@ class GSodeProgram :public GProgram
          * @return
          */
         virtual double fitness(vector<double> &genome);
+	void	getIntegral(vector<double> &genome,vector<double> &integral);
 		~GSodeProgram();
 };
 

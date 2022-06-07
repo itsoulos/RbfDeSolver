@@ -30,6 +30,7 @@ public:
     double  getValue(Data &x);
     double  getDerivative(Data &x,int pos);
     double  getSecondDerivative(Data &x,int pos);
+    double	integrate(double x0,double x1);
     QString toString();
     ~Rbf();
 };

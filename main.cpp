@@ -102,10 +102,12 @@ void run_sode()
     double fitness;
     Data subgenome;
     subgenome.resize(genome.size()/sode_program->getNode());
+    vector<double> integral;
     for(iters=1;iters<=maxgenerations;iters++)
     {
             sode_population->nextGeneration();
             genome=sode_population->getBestGenome();
+	
             fitness=sode_population->getBestFitness();
             printf("GENERATION: %4d\t FITNESS: %.10lg \n",iters,fabs(fitness));
             for(int j=0;j<sode_program->getNode();j++)
@@ -115,8 +117,14 @@ void run_sode()
                     subgenome[k]=genome[subgenome.size()*j+k];
                 }
                 rbf->setVariables(subgenome);
+
                 printf("Rbf[%d]=%s\n",j,rbf->toString().toStdString().c_str());
+		Data xx;
+		xx.resize(1);
+		xx[0]=sode_program->getX1();
+		printf("Final value[%5d]=%lf\n",j,rbf->getValue(xx));
             }
+		
             if(fabs(fitness)<eps) break;
     }
 }

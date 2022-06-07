@@ -13,6 +13,26 @@ double      Rbf::getDistance(Data &x,Data &y)
     return sqrt(sum);
 }
 
+double	Rbf::integrate(double x0,double x1)
+{
+	double sum = 0.0;
+	int npoints=1000;
+	double delta = (x1-x0)/npoints;
+	for(int i=0;i<npoints-1;i++)
+	{
+		double a = x0+i*delta;
+		double b = a + delta;
+		Data xx;
+		xx.resize(1);
+		xx[0]=a;
+		double fa=getValue(xx);
+		xx[0]=b;
+		double fb=getValue(xx);
+		sum+=(fb+fa)*delta;
+	}
+	return sum;
+}
+
 double      Rbf::gaussianDerivative(Data &x,Data &m,double v,int pos)
 {
 
@@ -35,7 +55,8 @@ double      Rbf::gaussian(Data &x,Data &m,double v)
 {
 
     double dist =getDistance(x,m);
-    return exp(-dist * dist/v);
+    double vv =exp(-dist * dist/v);
+    return vv;
 }
 
 int     Rbf::getNodes() const

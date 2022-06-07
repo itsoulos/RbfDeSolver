@@ -6,7 +6,7 @@ typedef double(*DOUBLE_FUNCTION)();
 typedef int(*INTEGER_FUNCTION)();
 # define REDO_MAX       4
 # define GINF           -1e+100
-# define GLAMBDA        1000.0
+# define GLAMBDA        100.0
 
 GSodeProgram::GSodeProgram(Rbf *m,double X0,double X1,int Node,int Npoints)
     :GProgram(m)
@@ -167,7 +167,71 @@ int	GSodeProgram::getNpoints() const
 	return npoints;
 }
 
+void	gauleg(double x1,double x2,vector<double> &x,vector<double> &w,int n)
+{
+	double eps=3.0*1e-14;
+	int m=(n+1)/2;
+	double xm=0.5*(x2+x1);
+	double xl=0.5*(x2-x1);
+	for(int i=1;i<=m;i++)
+	{
+		double z=cos(M_PI*(i-0.25)/(n+0.5));
+		label1:
+		double p1=1.0;
+		double p2=0.0;
+		for(int j=1;j<=n;j++)
+		{
+			double p3=p2;
+			p2=p1;
+			p1=((2.0*j-1.0)*z*p2-(j-1.0)*p3)/j;
+		}
+		double pp=n*(z*p1-p2)/(z*z-1.0);
+		double z1=z;
+		z=z1-p1/pp;
+		if(fabs(z-z1)>eps) goto label1;
+		x[i-1]=xm-xl*z;
+		x[n+1-i-1]=xm+xl*z;
+		w[i-1]=2.0*xl/((1.0-z*z)*pp*pp);
+		w[n+1-i-1]=w[i-1];
+		
+	}
+}
 
+void	GSodeProgram::getIntegral(vector<double> &genome,vector<double> &integral)
+{
+    int i,j;
+
+    double y_array[node];
+    double yy_array[node];
+    Data x;
+    x.resize(1);
+	double pt = 0.0;
+    Data subgenome;
+    subgenome.resize(genome.size()/node);
+    integral.resize(node);
+    vector<double> xpoint;
+    xpoint.resize(npoints);
+	for(int i=0;i<integral.size();i++)
+		integral[i]=0.0;
+	for(i=0;i<npoints;i++)
+	{
+	    x[0]=x0+i*1.0*(x1-x0)/(npoints-1.0);
+	    for(int j=0;j<node;j++)
+	    {
+            for(int k=0;k<subgenome.size();k++)
+            {
+                subgenome[k]=genome[subgenome.size()*j+k];
+            }
+            rbf->setVariables(subgenome);
+            double y1=rbf->getValue(x);
+	    x[0]=x0+(i+1)*1.0*(x1-x0)/(npoints-1.0);
+            double y2=rbf->getValue(x);
+
+	    integral[j]+=(y2+y1)*(x1-x0)/(npoints-1.0);
+	    }
+	}
+
+}
 double GSodeProgram::fitness(vector<double> &genome)
 {
 	/*	Evaluation of the fitness value associated with the 
@@ -202,17 +266,17 @@ double GSodeProgram::fitness(vector<double> &genome)
             rbf->setVariables(subgenome);
             yy_array[j]=rbf->getDerivative(x,0);
             y_array[j]=rbf->getValue(x);
-	     }
+                if(std::isnan(y_array[j]) || std::isinf(y_array[j])) {return GINF;}
+                if(std::isnan(yy_array[j]) || std::isinf(yy_array[j])) {return GINF;}
 
+	     }
 
 	double pf;
 	    if(fsystemfun==NULL)
 	    		pf=systemfun(node,x[0],y_array,yy_array);
 	    else
 		    	pf=fsystemfun(&node,&x[0],y_array,yy_array);
-	if(i && fabs(pf-lastValue)<1e-5) sameValue++;
-	lastValue = pf;
-	value = value + pf;
+	value = value + pf*pf;
 
 	}
 	/*	Penalty evaluation.
@@ -231,7 +295,6 @@ double GSodeProgram::fitness(vector<double> &genome)
 	}
                 if(std::isnan(value) || std::isinf(value)) return GINF;
                 if(std::isnan(penalty) || std::isinf(penalty)) return GINF;
-	//printf("value: %lf penalty; %lf \n",value,penalty);
     value = value +(penalty);
 	return -value*(1.0+pt);//sameValue*1.0/npoints);
 }

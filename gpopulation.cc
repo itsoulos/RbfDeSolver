@@ -32,7 +32,7 @@ GPopulation::GPopulation(int gcount,int gsize,vector<GProgram*> p)
         children[i].resize(genome_size);
         for(int j=0;j<genome_size;j++)
         {
-            genome[i][j]=0.1*(2.0 * drand48()-1.0);
+            genome[i][j]=10* drand48();//0.1* rand()*1.0/RAND_MAX;
         }
     }
     fitness_array.resize(genome_count);
@@ -65,7 +65,7 @@ GPopulation::GPopulation(int gcount,int gsize,GProgram *p)
         children[i].resize(genome_size);
 		for(int j=0;j<genome_size;j++)
 		{
-            genome[i][j]=0.1* rand()*1.0/RAND_MAX;
+            genome[i][j]=0.01* drand48();//0.1* rand()*1.0/RAND_MAX;
 	    
         }
 	}
@@ -98,7 +98,7 @@ void	GPopulation::localSearch(int pos)
     xr.resize(g.size());
     for(int i=0;i<g.size();i++)
     {
-        xl[i]=-100;
+        xl[i]=0;
         xr[i]= 100;
     }
     pt->setLeftMargin(xl);
@@ -259,6 +259,8 @@ void	GPopulation::crossover()
                double alfa=-0.5+2.0*drand48();
                double g1=alfa*x1+(1.0-alfa)*x2;
                double g2=alfa*x2+(1.0-alfa)*x1;
+	       if(g1<0) g1=-g1;
+	       if(g2<0) g2=-g2;
                children[count_children][k]=g1;
                children[count_children+1][k]=g2;
         }
@@ -299,7 +301,8 @@ void	GPopulation::mutate()
 			double r=rand()*1.0/RAND_MAX;
 			if(r<mutation_rate)
 			{
-                genome[i][j]=genome[i][j]*(1.0+ 0.05*(2.0*drand48()-1.0));
+                genome[i][j]=fabs(genome[i][j]*(1.0+ 0.05*(2.0*drand48()-1.0)));
+		
 			}
 		}
 	}
@@ -370,8 +373,18 @@ void	GPopulation::nextGeneration()
    extern int localSearchChromosomes;
     if((generation+1)%localSearchGenerations==0)
 	{
+		extern int threads ;
+		if(threads<=1)
+		{
         for(int i=0;i<localSearchChromosomes;i++)
                 localSearch(rand() % genome_count);
+		}
+		else
+		{
+#pragma omp parallel for num_threads(threads)
+        for(int i=0;i<localSearchChromosomes;i++)
+                localSearch(rand() % genome_count);
+		}
         select();
     }
 	++generation;
